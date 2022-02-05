@@ -7,6 +7,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -58,5 +59,10 @@ public class MainController {
     }
 
     public void onTorlesButton(ActionEvent actionEvent) {
+    }
+
+    public void leirasMegjelenit(MouseEvent mouseEvent) {
+        Etlap kivalasztott = etlapTable.getSelectionModel().getSelectedItem();
+        etlapLeiras.setText(kivalasztott.getLeiras());
     }
 }
