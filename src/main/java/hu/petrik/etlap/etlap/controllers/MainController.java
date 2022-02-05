@@ -1,5 +1,7 @@
-package hu.petrik.etlap.etlap;
+package hu.petrik.etlap.etlap.controllers;
 
+import hu.petrik.etlap.etlap.Etlap;
+import hu.petrik.etlap.etlap.EtlapDb;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

@@ -7,4 +7,6 @@ module hu.petrik.etlap.etlap {
 
     opens hu.petrik.etlap.etlap to javafx.fxml;
     exports hu.petrik.etlap.etlap;
+    exports hu.petrik.etlap.etlap.controllers;
+    opens hu.petrik.etlap.etlap.controllers to javafx.fxml;
 }
