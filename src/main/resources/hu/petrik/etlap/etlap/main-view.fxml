@@ -5,12 +5,36 @@
 <?import javafx.scene.layout.VBox?>
 
 <?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="hu.petrik.etlap.etlap.MainController">
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TextArea?>
+<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hu.petrik.etlap.etlap.MainController">
     <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
-
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
+    <HBox prefHeight="100.0" prefWidth="200.0">
+        <children>
+            <Button maxWidth="150.0" onAction="#onHozzaadButton" prefWidth="125.0" text="Új étel felvétele">
+                <HBox.margin>
+                    <Insets right="10.0" />
+                </HBox.margin>
+                <font>
+                    <Font size="14.0" />
+                </font></Button>
+            <Button maxWidth="150.0" mnemonicParsing="false" onAction="#onTorlesButton" prefWidth="100.0" text="Törlés">
+                <font>
+                    <Font size="14.0" />
+                </font></Button>
+        </children>
+    </HBox>
+    <TableView fx:id="etlapTable" maxHeight="400.0" maxWidth="500.0" prefHeight="200.0" prefWidth="650.0">
+        <columns>
+            <TableColumn fx:id="etlapNev" maxWidth="350.0" prefWidth="200.0" text="Név" />
+            <TableColumn fx:id="etlapKategoria" maxWidth="300.0" prefWidth="155.0" text="Kategória" />
+            <TableColumn fx:id="etlapAr" maxWidth="150.0" prefWidth="140.0" text="Ár (Ft)" />
+        </columns>
+    </TableView>
+    <TextArea fx:id="etlapLeiras" prefHeight="100.0" prefWidth="200.0" />
 </VBox>
