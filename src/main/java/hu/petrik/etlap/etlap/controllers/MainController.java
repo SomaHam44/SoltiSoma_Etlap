@@ -80,4 +80,12 @@ public class MainController extends Controller {
         Etlap kivalasztott = etlapTable.getSelectionModel().getSelectedItem();
         etlapLeiras.setText(kivalasztott.getLeiras());
     }
+
+    public void onSzazalekosEmelesButtonClick(ActionEvent actionEvent) {
+
+    }
+
+    public void onForintEmelesButtonClick(ActionEvent actionEvent) {
+
+    }
 }

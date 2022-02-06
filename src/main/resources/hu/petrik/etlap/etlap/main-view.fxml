@@ -45,7 +45,7 @@
                            <Font size="14.0" />
                         </font>
                      </Label>
-                     <Button mnemonicParsing="false" prefWidth="100.0" text="Emelés">
+                     <Button mnemonicParsing="false" onAction="#onSzazalekosEmelesButtonClick" prefWidth="100.0" text="Emelés">
                         <HBox.margin>
                            <Insets left="10.0" />
                         </HBox.margin>
@@ -72,7 +72,7 @@
                                 <Font size="14.0" />
                             </font>
                         </Label>
-                        <Button mnemonicParsing="false" prefWidth="100.0" text="Emelés">
+                        <Button mnemonicParsing="false" onAction="#onForintEmelesButtonClick" prefWidth="100.0" text="Emelés">
                             <HBox.margin>
                                 <Insets left="10.0" />
                             </HBox.margin>

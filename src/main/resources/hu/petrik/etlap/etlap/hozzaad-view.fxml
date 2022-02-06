@@ -25,7 +25,7 @@
                         <RowConstraints minHeight="3.0" prefHeight="2.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
-                        <Button alignment="CENTER" minHeight="19.0" minWidth="50.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="400.0" text="Hozzáadás" textAlignment="CENTER" GridPane.columnSpan="2" GridPane.rowIndex="4">
+                        <Button alignment="CENTER" minHeight="19.0" minWidth="50.0" mnemonicParsing="false" onAction="#onHozzaadasButtonClick" prefHeight="26.0" prefWidth="400.0" text="Hozzáadás" textAlignment="CENTER" GridPane.columnSpan="2" GridPane.rowIndex="4">
                             <font>
                                 <Font size="14.0" />
                             </font></Button>
@@ -57,10 +57,10 @@
                             <font>
                                 <Font size="14.0" />
                             </font></Label>
-                        <TextField prefWidth="200.0" promptText="Név" GridPane.columnIndex="1" />
-                        <TextArea prefHeight="200.0" prefWidth="200.0" promptText="Leírás" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Spinner prefHeight="25.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <ChoiceBox prefHeight="30.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <TextField fx:id="bevitelNev" prefWidth="200.0" promptText="Név" GridPane.columnIndex="1" />
+                        <TextArea  fx:id="bevitelLeiras" prefHeight="200.0" prefWidth="200.0" promptText="Leírás" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Spinner fx:id="bevitelAr" prefHeight="25.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <ChoiceBox fx:id="bevitelKategoria" prefHeight="30.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                             <items>
                                 <FXCollections fx:factory="observableArrayList">
                                     <String fx:value="Előétel" />
