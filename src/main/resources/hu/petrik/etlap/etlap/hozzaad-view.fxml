@@ -58,14 +58,19 @@
                                 <Font size="14.0" />
                             </font></Label>
                         <TextField fx:id="bevitelNev" prefWidth="200.0" promptText="Név" GridPane.columnIndex="1" />
-                        <TextArea  fx:id="bevitelLeiras" prefHeight="200.0" prefWidth="200.0" promptText="Leírás" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Spinner fx:id="bevitelAr" prefHeight="25.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <TextArea fx:id="bevitelLeiras" prefHeight="200.0" prefWidth="200.0" promptText="Leírás" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Spinner fx:id="bevitelAr" editable="true" prefHeight="25.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                            <valueFactory>
+                                <javafx.scene.control.SpinnerValueFactory.IntegerSpinnerValueFactory initialValue="500" min="1"
+                                                                                                     max="100000" amountToStepBy="100"/>
+                            </valueFactory>
+                        </Spinner>
                         <ChoiceBox fx:id="bevitelKategoria" prefHeight="30.0" prefWidth="300.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                             <items>
                                 <FXCollections fx:factory="observableArrayList">
-                                    <String fx:value="Előétel" />
-                                    <String fx:value="Főétel" />
-                                    <String fx:value="Desszert" />
+                                    <String fx:value="előétel" />
+                                    <String fx:value="főétel" />
+                                    <String fx:value="desszert" />
                                 </FXCollections>
                             </items>
 

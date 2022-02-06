@@ -106,7 +106,11 @@ public class MainController extends Controller {
             if (!megerositoAblak("Biztosan szeretné emelni : " + seged)) {
                 return;
             }
+            else if (megerositoAblak("Biztosan szeretné emelni : " + seged)) {
+                alert("Százalékos emelés");
+            }
         }
+
 
     }
 
@@ -117,6 +121,10 @@ public class MainController extends Controller {
             if (!megerositoAblak("Biztosan szeretné emelni : " + seged)) {
                 return;
             }
+            else if (megerositoAblak("Biztosan szeretné emelni : " + seged)) {
+                alert("Forintos emelés");
+            }
+
         }
 
     }
