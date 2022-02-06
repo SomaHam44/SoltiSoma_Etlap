@@ -5,10 +5,7 @@ import hu.petrik.etlap.etlap.Etlap;
 import hu.petrik.etlap.etlap.EtlapDb;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
@@ -43,7 +40,7 @@ public class MainController extends Controller {
 
         }
         catch (SQLException e) {
-            System.out.println(e);
+            hibaKiiro(e);
         }
     }
 
@@ -56,7 +53,7 @@ public class MainController extends Controller {
             }
 
         } catch (SQLException e) {
-            System.out.println(e);
+            hibaKiiro(e);
         }
     }
 
@@ -68,12 +65,33 @@ public class MainController extends Controller {
 
         }
         catch (Exception e ) {
-            System.out.println(e);
+            hibaKiiro(e);
 
         }
     }
 
     public void onTorlesButton(ActionEvent actionEvent) {
+        int kivalasztottIndex = etlapTable.getSelectionModel().getSelectedIndex();
+        if (kivalasztottIndex == -1) {
+            alert("Nincsen kiválasztva elem a törlés előtt!");
+            return;
+        }
+
+        Etlap torlendoEtlap = etlapTable.getSelectionModel().getSelectedItem();
+        if (!megerositoAblak("Biztos, hogy törölni szeretné ezt az étlapot: " + torlendoEtlap.getNev())) {
+            return;
+
+        }
+
+        try {
+            db.etlapTorles(torlendoEtlap.getId());
+            etlapListaFeltoltes();
+        } catch (SQLException e) {
+            hibaKiiro(e);
+
+        }
+
+
     }
 
     public void leirasMegjelenit(MouseEvent mouseEvent) {
