@@ -17,7 +17,7 @@ import java.util.List;
 
 import static hu.petrik.etlap.etlap.Controller.ujAblak;
 
-public class MainController {
+public class MainController extends Controller {
 
     public TableView<Etlap> etlapTable;
     @FXML
@@ -66,9 +66,9 @@ public class MainController {
             hozzaado.getStage().setOnCloseRequest(event -> etlapListaFeltoltes());
             hozzaado.getStage().show();
 
-
         }
         catch (Exception e ) {
+            System.out.println(e);
 
         }
     }

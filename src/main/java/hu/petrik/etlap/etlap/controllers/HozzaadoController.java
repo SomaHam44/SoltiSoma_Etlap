@@ -1,4 +1,6 @@
 package hu.petrik.etlap.etlap.controllers;
 
-public class HozzaadoController {
+import hu.petrik.etlap.etlap.Controller;
+
+public class HozzaadoController extends Controller {
 }
