@@ -1,5 +1,6 @@
 package hu.petrik.etlap.etlap.controllers;
 
+import hu.petrik.etlap.etlap.Controller;
 import hu.petrik.etlap.etlap.Etlap;
 import hu.petrik.etlap.etlap.EtlapDb;
 import javafx.event.ActionEvent;
@@ -13,6 +14,8 @@ import javafx.scene.input.MouseEvent;
 
 import java.sql.SQLException;
 import java.util.List;
+
+import static hu.petrik.etlap.etlap.Controller.ujAblak;
 
 public class MainController {
 
@@ -58,6 +61,16 @@ public class MainController {
     }
 
     public void onHozzaadButton(ActionEvent actionEvent) {
+        try {
+            Controller hozzaado = ujAblak("hozzaad-view.fxml", "Étlap felvétele", 540, 500);
+            hozzaado.getStage().setOnCloseRequest(event -> etlapListaFeltoltes());
+            hozzaado.getStage().show();
+
+
+        }
+        catch (Exception e ) {
+
+        }
     }
 
     public void onTorlesButton(ActionEvent actionEvent) {
