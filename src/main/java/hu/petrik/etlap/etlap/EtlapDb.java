@@ -31,4 +31,39 @@ public class EtlapDb {
         return etlapLista;
 
     }
+
+    public boolean etlapTorles(int id) throws SQLException {
+        String sql = "DELETE FROM etlap WHERE id = ?";
+        PreparedStatement stmt = connection.prepareStatement(sql);
+        stmt.setInt(1, id);
+        int erintettek = stmt.executeUpdate();
+        return erintettek == 1;
+
+
+
+    }
+
+    public int etlapHozzaadas(String nev, String leiras, int ar, String kategoria) throws SQLException {
+        String sql = "INSERT INTO etlap(nev, leiras, ar, kategoria) VALUES ?,?,?,?";
+        PreparedStatement stmt = connection.prepareStatement(sql);
+        stmt.setString(1, nev);
+        stmt.setString(2, leiras);
+        stmt.setInt(3, ar);
+        stmt.setString(4, kategoria);
+        return stmt.executeUpdate();
+
+    }
+
+    public boolean etlapModositasa(Etlap modositando) throws SQLException {
+        String sql = "UPDATE etlap SET nev = ?," + "leiras = ?," + "ar = ?," + "kategoria = ? " +
+                "WHERE id = ?";
+        PreparedStatement stmt = connection.prepareStatement(sql);
+        stmt.setString(1, modositando.getNev());
+        stmt.setString(2, modositando.getLeiras());
+        stmt.setInt(3, modositando.getAr());
+        stmt.setString(4, modositando.getKategoria());
+        stmt.setInt(5, modositando.getId());
+        int erintettSorok = stmt.executeUpdate();
+        return erintettSorok == 1;
+    }
 }
