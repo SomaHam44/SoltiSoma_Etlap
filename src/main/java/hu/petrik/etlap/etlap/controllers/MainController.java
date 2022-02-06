@@ -100,10 +100,24 @@ public class MainController extends Controller {
     }
 
     public void onSzazalekosEmelesButtonClick(ActionEvent actionEvent) {
+        int kivalasztottIndex = etlapTable.getSelectionModel().getSelectedIndex();
+        String seged = "Összes étel";
+        if (kivalasztottIndex == -1) {
+            if (!megerositoAblak("Biztosan szeretné emelni : " + seged)) {
+                return;
+            }
+        }
 
     }
 
     public void onForintEmelesButtonClick(ActionEvent actionEvent) {
+        int kivalasztottIndex = etlapTable.getSelectionModel().getSelectedIndex();
+        String seged = "Összes étel";
+        if (kivalasztottIndex == -1) {
+            if (!megerositoAblak("Biztosan szeretné emelni : " + seged)) {
+                return;
+            }
+        }
 
     }
 }
