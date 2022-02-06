@@ -30,7 +30,7 @@
             <children>
                <HBox prefHeight="50.0" prefWidth="490.0">
                   <children>
-                     <Spinner editable="true" prefWidth="160.0">
+                     <Spinner fx:id="szazalekSpinner" editable="true" prefWidth="160.0">
                          <valueFactory>
                              <SpinnerValueFactory.IntegerSpinnerValueFactory amountToStepBy="5" max="50" min="5" />
                          </valueFactory>
@@ -57,7 +57,7 @@
                 </HBox>
                 <HBox>
                     <children>
-                        <Spinner editable="true" prefWidth="160.0">
+                        <Spinner fx:id="forintSpinner" editable="true" prefWidth="160.0">
                             <valueFactory>
                                 <SpinnerValueFactory.IntegerSpinnerValueFactory amountToStepBy="50" max="3000" min="50" />
                             </valueFactory>

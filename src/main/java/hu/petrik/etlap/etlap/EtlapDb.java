@@ -66,4 +66,13 @@ public class EtlapDb {
         int erintettSorok = stmt.executeUpdate();
         return erintettSorok == 1;
     }
+
+    public boolean etlapArEmelesForinttal(Etlap etlap, int ar, int ertek) throws SQLException {
+        String sql = "UPDATE etlap SET ar = ?" + "WHERE id = ?";
+        PreparedStatement stmt = connection.prepareStatement(sql);
+        stmt.setInt(1, ar + ertek);
+        stmt.setInt(2, etlap.getId());
+        int erintettSorok = stmt.executeUpdate();
+        return erintettSorok == 1;
+    }
 }

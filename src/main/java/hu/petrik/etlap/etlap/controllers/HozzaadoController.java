@@ -62,6 +62,9 @@ public class HozzaadoController extends Controller {
             int siker = etlapDb.etlapHozzaadasa(nev,leiras, kategoria, ar);
             if (siker == 1) {
                 alert("Az étlap felvétele sikeres!");
+                bevitelNev.setText("");
+                bevitelLeiras.setText("");
+                bevitelKategoria.setValue("");
             }
             else {
                 alert("Az étlap felvétele sikertelen!");

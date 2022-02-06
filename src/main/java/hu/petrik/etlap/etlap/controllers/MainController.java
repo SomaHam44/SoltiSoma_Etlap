@@ -17,6 +17,8 @@ import static hu.petrik.etlap.etlap.Controller.ujAblak;
 public class MainController extends Controller {
 
     public TableView<Etlap> etlapTable;
+    public Spinner<Integer> forintSpinner;
+    public Spinner<Integer> szazalekSpinner;
     @FXML
     private TableColumn<Etlap, Integer> etlapAr;
     @FXML
@@ -116,13 +118,24 @@ public class MainController extends Controller {
 
     public void onForintEmelesButtonClick(ActionEvent actionEvent) {
         int kivalasztottIndex = etlapTable.getSelectionModel().getSelectedIndex();
+        Etlap kivalasztott = etlapTable.getSelectionModel().getSelectedItem();
         String seged = "Összes étel";
         if (kivalasztottIndex == -1) {
             if (!megerositoAblak("Biztosan szeretné emelni : " + seged)) {
                 return;
             }
             else if (megerositoAblak("Biztosan szeretné emelni : " + seged)) {
-                alert("Forintos emelés");
+
+            }
+
+        }
+        else {
+            if (!megerositoAblak("Biztosan szeretné emelni : " + kivalasztott.getNev())) {
+                return;
+            }
+            else if (megerositoAblak("Biztosan szeretné emelni : " + kivalasztott.getNev())) {
+
+
             }
 
         }
