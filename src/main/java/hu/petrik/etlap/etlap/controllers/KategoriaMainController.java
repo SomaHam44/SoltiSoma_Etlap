@@ -49,5 +49,24 @@ public class KategoriaMainController extends Controller {
     }
 
     public void onTorlesButton(ActionEvent actionEvent) {
+        int kivalasztottIndex = kategoriaTable.getSelectionModel().getSelectedIndex();
+        if (kivalasztottIndex == -1) {
+            alert("Nincsen kiválasztva elem a törlés előtt!");
+            return;
+        }
+
+        Kategoria torolhetoKategoria = kategoriaTable.getSelectionModel().getSelectedItem();
+        if (!megerositoAblak("Biztos, hogy törölni szeretné ezt a kategóriát: " + torolhetoKategoria.getNev())) {
+            return;
+
+        }
+
+        try {
+            db.kategoriaTorles(torolhetoKategoria.getId());
+            kategoriaListaFeltoltes();
+        } catch (SQLException e) {
+            hibaKiiro(e);
+
+        }
     }
 }

@@ -118,4 +118,15 @@ public class EtlapDb {
         return kategoriaList;
 
     }
+
+    public boolean kategoriaTorles(int id) throws SQLException {
+        String sql = "DELETE FROM kategoria WHERE id = ?";
+        PreparedStatement stmt = connection.prepareStatement(sql);
+        stmt.setInt(1, id);
+        int erintettek = stmt.executeUpdate();
+        return erintettek == 1;
+
+
+
+    }
 }
