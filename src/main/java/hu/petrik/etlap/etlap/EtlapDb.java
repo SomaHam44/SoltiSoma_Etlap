@@ -44,6 +44,26 @@ public class EtlapDb {
 
     }
 
+    public List<Etlap> etlapSzurve(String kategoria) throws SQLException {
+        List<Etlap> szurtEtlapLista = new ArrayList<>();
+        Statement stmt = connection.createStatement();
+        String sql = "SELECT * FROM etlap INNER JOIN kategoria ON kategoria_id = kategoria.id WHERE kategoria.nev = ?";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setString(1, kategoria);
+        ResultSet resultSet = stmt.executeQuery(sql);
+        while (resultSet.next()) {
+            int id = resultSet.getInt("id");
+            String nev = resultSet.getString("nev");
+            String leiras = resultSet.getString("leiras");
+            int ar = resultSet.getInt("ar");
+            String kategoriaNev = resultSet.getString("kategoria.nev");
+            Etlap etlap = new Etlap(id, nev, leiras, ar, kategoria);
+            szurtEtlapLista.add(etlap);
+
+        }
+        return szurtEtlapLista;
+    }
+
     public int etlapHozzaadasa(String nev, String leiras, int kategoria, int ar) throws SQLException {
         String sql="INSERT INTO etlap (nev,leiras,kategoria_id,ar) VALUES(?,?,?,?)";
         PreparedStatement stmt = connection.prepareStatement(sql);
