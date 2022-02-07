@@ -102,21 +102,22 @@ public class MainController extends Controller {
     }
 
     public void onSzazalekosEmelesButtonClick(ActionEvent actionEvent) {
-        int kivalasztottIndex = etlapTable.getSelectionModel().getSelectedIndex();
-        String seged = "Összes étel";
-        if (kivalasztottIndex == -1) {
-            if (!megerositoAblak("Biztosan szeretné emelni : " + seged)) {
-                return;
-            }
-            else if (megerositoAblak("Biztosan szeretné emelni : " + seged)) {
-                alert("Százalékos emelés");
-            }
+        int emelo = 0;
+        try {
+            emelo = szazalekSpinner.getValue();
+        } catch (NullPointerException e) {
+            alert("Az emeléshez kötelező megadni az emelés értékét!");
+            return;
+        } catch (Exception e) {
+            alert("Az ár százalékos emelése 5 és 50 között lehet");
+            return;
         }
 
+        if (emelo < 5 || emelo > 50) {
+            alert("Az ár százalékos emelése 5 és 50 között lehet");
+            return;
+        }
 
-    }
-
-    public void onForintEmelesButtonClick(ActionEvent actionEvent) {
         int kivalasztottIndex = etlapTable.getSelectionModel().getSelectedIndex();
         Etlap kivalasztott = etlapTable.getSelectionModel().getSelectedItem();
         String seged = "Összes étel";
@@ -124,8 +125,61 @@ public class MainController extends Controller {
             if (!megerositoAblak("Biztosan szeretné emelni : " + seged)) {
                 return;
             }
-            else if (megerositoAblak("Biztosan szeretné emelni : " + seged)) {
+            try {
+                db.etlapArEmelesSzazalekkalOsszes((emelo));
+                etlapListaFeltoltes();
 
+            } catch (SQLException e) {
+                hibaKiiro(e);
+            }
+        }
+        else {
+                if (!megerositoAblak("Biztosan szeretné emelni : " + kivalasztott.getNev())) {
+                    return;
+                }
+                try {
+                    db.etlapArEmelesSzazalekkal(kivalasztott.getId(), emelo);
+                    etlapListaFeltoltes();
+                } catch (SQLException e) {
+                    hibaKiiro(e);
+                }
+
+            }
+
+
+        }
+
+
+    public void onForintEmelesButtonClick(ActionEvent actionEvent) {
+        int emelo = 0;
+        try {
+            emelo = forintSpinner.getValue();
+        } catch (NullPointerException e) {
+            alert("Az emeléshez kötelező megadni az emelés értékét!");
+            return;
+        } catch (Exception e) {
+            alert("Az ár értéke 50 és 3000 között lehet");
+            return;
+        }
+
+        if (emelo < 50 || emelo > 3000) {
+            alert("Az ár értéke 50 és 3000 között lehet");
+            return;
+        }
+        int kivalasztottIndex = etlapTable.getSelectionModel().getSelectedIndex();
+        Etlap kivalasztott = etlapTable.getSelectionModel().getSelectedItem();
+        String seged = "Összes étel";
+        if (kivalasztottIndex == -1) {
+            if (!megerositoAblak("Biztosan szeretné emelni : " + seged)) {
+                return;
+            }
+            try {
+                db.etlapArEmelesForinttalOsszes(emelo);
+
+                etlapListaFeltoltes();
+
+            } catch (SQLException e) {
+                hibaKiiro(e);
             }
 
         }
@@ -133,10 +187,13 @@ public class MainController extends Controller {
             if (!megerositoAblak("Biztosan szeretné emelni : " + kivalasztott.getNev())) {
                 return;
             }
-            else if (megerositoAblak("Biztosan szeretné emelni : " + kivalasztott.getNev())) {
+                try {
+                    db.etlapArEmelesForinttal(kivalasztott.getId(), emelo);
+                    etlapListaFeltoltes();
+                } catch (SQLException e) {
+                    hibaKiiro(e);
+                }
 
-
-            }
 
         }
 
