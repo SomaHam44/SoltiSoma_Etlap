@@ -22,6 +22,15 @@
                 <font>
                     <Font size="14.0" />
                 </font></Button>
+            <Button maxWidth="150.0" mnemonicParsing="false" onAction="#onKategoriaMegjelenit" prefWidth="100.0" text="Kategória">
+                <HBox.margin>
+                    <Insets left="10.0" />
+                </HBox.margin>
+                <font>
+                    <Font size="14.0" />
+                </font>
+
+            </Button>
         </children>
     </HBox>
    <TitledPane animated="false" maxHeight="100.0" maxWidth="500.0" prefHeight="70.0" prefWidth="500.0" text="Áremelés">

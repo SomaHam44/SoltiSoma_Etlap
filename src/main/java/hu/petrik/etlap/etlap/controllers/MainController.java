@@ -198,4 +198,17 @@ public class MainController extends Controller {
         }
 
     }
+
+    public void onKategoriaMegjelenit(ActionEvent actionEvent) {
+        try {
+            Controller kategoria = ujAblak("kategoria_main-view.fxml", "Kategória", 540, 500);
+            kategoria.getStage().show();
+
+        }
+        catch (Exception e ) {
+            hibaKiiro(e);
+
+        }
+
+    }
 }

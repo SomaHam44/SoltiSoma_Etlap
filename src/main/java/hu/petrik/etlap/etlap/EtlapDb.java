@@ -22,7 +22,7 @@ public class EtlapDb {
             String nev = resultSet.getString("nev");
             String leiras = resultSet.getString("leiras");
             int ar = resultSet.getInt("ar");
-            String kategoria = resultSet.getString("kategoria");
+            String kategoria = resultSet.getString("kategoria_id");
             Etlap etlap = new Etlap(id, nev, leiras, ar, kategoria);
             etlapLista.add(etlap);
 
@@ -31,6 +31,7 @@ public class EtlapDb {
         return etlapLista;
 
     }
+
 
     public boolean etlapTorles(int id) throws SQLException {
         String sql = "DELETE FROM etlap WHERE id = ?";
@@ -99,5 +100,22 @@ public class EtlapDb {
         stmt.setInt(1, ertek);
         int erintettSorok = stmt.executeUpdate();
         return erintettSorok == 1;
+    }
+
+    public List<Kategoria> getKategoria() throws SQLException {
+        List<Kategoria> kategoriaList = new ArrayList<>();
+        Statement stmt = connection.createStatement();
+        String sql = "SELECT * FROM kategoria ORDER BY id";
+        ResultSet resultSet = stmt.executeQuery(sql);
+        while (resultSet.next()) {
+            int id = resultSet.getInt("id");
+            String nev = resultSet.getString("nev");
+            Kategoria kategoria = new Kategoria(id, nev);
+            kategoriaList.add(kategoria);
+
+        }
+
+        return kategoriaList;
+
     }
 }
