@@ -15,14 +15,14 @@ public class EtlapDb {
     public List<Etlap> getEtlap() throws SQLException {
         List<Etlap> etlapLista = new ArrayList<>();
         Statement stmt = connection.createStatement();
-        String sql = "SELECT * FROM etlap ";
+        String sql = "SELECT * FROM etlap INNER JOIN kategoria ON (etlap.kategoria_id = kategoria.id)";
         ResultSet resultSet = stmt.executeQuery(sql);
         while (resultSet.next()) {
             int id = resultSet.getInt("id");
             String nev = resultSet.getString("nev");
             String leiras = resultSet.getString("leiras");
             int ar = resultSet.getInt("ar");
-            String kategoria = resultSet.getString("kategoria_id");
+            String kategoria = resultSet.getString("kategoria.nev");
             Etlap etlap = new Etlap(id, nev, leiras, ar, kategoria);
             etlapLista.add(etlap);
 
@@ -44,12 +44,12 @@ public class EtlapDb {
 
     }
 
-    public int etlapHozzaadasa(String nev, String leiras, String kategoria, int ar) throws SQLException {
-        String sql="INSERT INTO etlap(nev,leiras,kategoria,ar) VALUES(?,?,?,?)";
+    public int etlapHozzaadasa(String nev, String leiras, int kategoria, int ar) throws SQLException {
+        String sql="INSERT INTO etlap (nev,leiras,kategoria_id,ar) VALUES(?,?,?,?)";
         PreparedStatement stmt = connection.prepareStatement(sql);
         stmt.setString(1,nev);
         stmt.setString(2,leiras);
-        stmt.setString(3,kategoria);
+        stmt.setInt(3,kategoria);
         stmt.setInt(4,ar);
         return stmt.executeUpdate();
     }
@@ -126,7 +126,12 @@ public class EtlapDb {
         int erintettek = stmt.executeUpdate();
         return erintettek == 1;
 
+    }
 
-
+    public int kategoriaHozzaadasa(String nev) throws SQLException {
+        String sql="INSERT INTO kategoria(nev) VALUES(?)";
+        PreparedStatement stmt = connection.prepareStatement(sql);
+        stmt.setString(1,nev);
+        return stmt.executeUpdate();
     }
 }

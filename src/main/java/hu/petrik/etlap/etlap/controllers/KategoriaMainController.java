@@ -46,6 +46,17 @@ public class KategoriaMainController extends Controller {
 
 
     public void onHozzaadasButton(ActionEvent actionEvent) {
+        try {
+            Controller hozzaado = ujAblak("kategoria_hozzaad-view.fxml", "Kategória hozzáadása", 300, 200);
+            hozzaado.getStage().setOnCloseRequest(event -> kategoriaListaFeltoltes());
+            hozzaado.getStage().show();
+
+        }
+        catch (Exception e ) {
+            hibaKiiro(e);
+
+        }
+
     }
 
     public void onTorlesButton(ActionEvent actionEvent) {

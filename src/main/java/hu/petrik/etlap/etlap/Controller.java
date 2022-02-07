@@ -56,6 +56,7 @@ public  abstract class Controller {
 
 
 
+
     protected boolean megerositoAblak(String uzenet) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Biztosan ?");

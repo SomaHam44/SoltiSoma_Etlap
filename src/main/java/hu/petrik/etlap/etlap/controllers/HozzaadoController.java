@@ -19,7 +19,7 @@ public class HozzaadoController extends Controller {
     @FXML
     public Spinner<Integer> bevitelAr;
     @FXML
-    public ChoiceBox<String> bevitelKategoria;
+    public ChoiceBox<Integer> bevitelKategoria;
     private int ar;
 
     public void onHozzaadasButtonClick(ActionEvent actionEvent) {
@@ -55,7 +55,7 @@ public class HozzaadoController extends Controller {
         }
 
         System.out.println(ar);
-        String kategoria = bevitelKategoria.getValue();
+        int kategoria = bevitelKategoria.getValue();
 
         try {
             EtlapDb etlapDb = new EtlapDb();
@@ -64,7 +64,7 @@ public class HozzaadoController extends Controller {
                 alert("Az étlap felvétele sikeres!");
                 bevitelNev.setText("");
                 bevitelLeiras.setText("");
-                bevitelKategoria.setValue("");
+                bevitelKategoria.setValue(0);
             }
             else {
                 alert("Az étlap felvétele sikertelen!");
