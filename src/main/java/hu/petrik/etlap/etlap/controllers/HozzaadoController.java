@@ -59,12 +59,12 @@ public class HozzaadoController extends Controller {
             alert("Az ár megadása kötelező!");
         }  catch (Exception ex) {
             System.out.println(ex);
-            alert("Az ár 1 és 100000 között lehet!");
+            alert("Az ár értéke 1 és 100000 között lehet!");
             return;
         }
 
         if (ar < 1 || ar > 100000) {
-            alert("Az ár 1 és 10000 között lehet!");
+            alert("Az ár értéke 1 és 10000 között lehet!");
         }
 
         if (kategoriaIndex == -1) {

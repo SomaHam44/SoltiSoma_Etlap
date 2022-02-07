@@ -121,7 +121,7 @@ public class MainController extends Controller {
         try {
             emelo = szazalekSpinner.getValue();
         } catch (NullPointerException e) {
-            alert("Az emeléshez kötelező megadni az emelés értékét!");
+            alert("Az emeléshez kötelező megadni a százalékos emelés értékét!");
             return;
         } catch (Exception e) {
             alert("Az ár százalékos emelése 5 és 50 között lehet");
@@ -137,7 +137,7 @@ public class MainController extends Controller {
         Etlap kivalasztott = etlapTable.getSelectionModel().getSelectedItem();
         String seged = "Összes étel";
         if (kivalasztottIndex == -1) {
-            if (!megerositoAblak("Biztosan szeretné emelni : " + seged)) {
+            if (!megerositoAblak("Biztosan szeretné emelni az árat : " + seged)) {
                 return;
             }
             try {
@@ -149,7 +149,7 @@ public class MainController extends Controller {
             }
         }
         else {
-                if (!megerositoAblak("Biztosan szeretné emelni : " + kivalasztott.getNev())) {
+                if (!megerositoAblak("Biztosan szeretné emelni az árat : " + kivalasztott.getNev())) {
                     return;
                 }
                 try {
@@ -170,22 +170,22 @@ public class MainController extends Controller {
         try {
             emelo = forintSpinner.getValue();
         } catch (NullPointerException e) {
-            alert("Az emeléshez kötelező megadni az emelés értékét!");
+            alert("Az emeléshez kötelező megadni a forintos emelés értékét!");
             return;
         } catch (Exception e) {
-            alert("Az ár értéke 50 és 3000 között lehet");
+            alert("Az ár értéke forintban 50 és 3000 között lehet");
             return;
         }
 
         if (emelo < 50 || emelo > 3000) {
-            alert("Az ár értéke 50 és 3000 között lehet");
+            alert("Az ár értéke forintban 50 és 3000 között lehet");
             return;
         }
         int kivalasztottIndex = etlapTable.getSelectionModel().getSelectedIndex();
         Etlap kivalasztott = etlapTable.getSelectionModel().getSelectedItem();
         String seged = "Összes étel";
         if (kivalasztottIndex == -1) {
-            if (!megerositoAblak("Biztosan szeretné emelni : " + seged)) {
+            if (!megerositoAblak("Biztosan szeretné emelni az árat : " + seged)) {
                 return;
             }
             try {
@@ -199,7 +199,7 @@ public class MainController extends Controller {
 
         }
         else {
-            if (!megerositoAblak("Biztosan szeretné emelni : " + kivalasztott.getNev())) {
+            if (!megerositoAblak("Biztosan szeretné emelni az árat : " + kivalasztott.getNev())) {
                 return;
             }
                 try {

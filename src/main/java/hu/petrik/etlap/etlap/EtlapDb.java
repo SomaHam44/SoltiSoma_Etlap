@@ -40,8 +40,6 @@ public class EtlapDb {
         int erintettek = stmt.executeUpdate();
         return erintettek == 1;
 
-
-
     }
 
     public List<Etlap> etlapSzurve(String kategoriaSzuro) throws SQLException {
@@ -74,15 +72,15 @@ public class EtlapDb {
     }
 
 
-    public boolean etlapModositasa(Etlap modositando) throws SQLException {
+    public boolean etlapModositasa(Etlap modositandoEtlap) throws SQLException {
         String sql = "UPDATE etlap SET nev = ?," + "leiras = ?," + "ar = ?," + "kategoria = ? " +
                 "WHERE id = ?";
         PreparedStatement stmt = connection.prepareStatement(sql);
-        stmt.setString(1, modositando.getNev());
-        stmt.setString(2, modositando.getLeiras());
-        stmt.setInt(3, modositando.getAr());
-        stmt.setString(4, modositando.getKategoria());
-        stmt.setInt(5, modositando.getId());
+        stmt.setString(1, modositandoEtlap.getNev());
+        stmt.setString(2, modositandoEtlap.getLeiras());
+        stmt.setInt(3, modositandoEtlap.getAr());
+        stmt.setString(4, modositandoEtlap.getKategoria());
+        stmt.setInt(5, modositandoEtlap.getId());
         int erintettSorok = stmt.executeUpdate();
         return erintettSorok == 1;
     }
@@ -152,5 +150,15 @@ public class EtlapDb {
         PreparedStatement stmt = connection.prepareStatement(sql);
         stmt.setString(1,nev);
         return stmt.executeUpdate();
+    }
+
+    public boolean kategoriaModositasa(Kategoria modositandoKategoria) throws SQLException {
+        String sql = "UPDATE etlap SET nev = ?," +
+                "WHERE id = ?";
+        PreparedStatement stmt = connection.prepareStatement(sql);
+        stmt.setString(1, modositandoKategoria.getNev());
+        stmt.setInt(2, modositandoKategoria.getId());
+        int erintettSorok = stmt.executeUpdate();
+        return erintettSorok == 1;
     }
 }
