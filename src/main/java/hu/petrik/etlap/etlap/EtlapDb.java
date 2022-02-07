@@ -44,19 +44,18 @@ public class EtlapDb {
 
     }
 
-    public List<Etlap> etlapSzurve(String kategoria) throws SQLException {
+    public List<Etlap> etlapSzurve(String kategoriaSzuro) throws SQLException {
         List<Etlap> szurtEtlapLista = new ArrayList<>();
-        Statement stmt = connection.createStatement();
-        String sql = "SELECT * FROM etlap INNER JOIN kategoria ON kategoria_id = kategoria.id WHERE kategoria.nev = ?";
+        String sql = "SELECT * FROM etlap INNER JOIN kategoria ON (etlap.kategoria_id = kategoria.id) WHERE kategoria.nev = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setString(1, kategoria);
-        ResultSet resultSet = stmt.executeQuery(sql);
+        preparedStatement.setString(1, kategoriaSzuro);
+        ResultSet resultSet = preparedStatement.executeQuery();
         while (resultSet.next()) {
             int id = resultSet.getInt("id");
             String nev = resultSet.getString("nev");
             String leiras = resultSet.getString("leiras");
             int ar = resultSet.getInt("ar");
-            String kategoriaNev = resultSet.getString("kategoria.nev");
+            String kategoria = resultSet.getString("kategoria.nev");
             Etlap etlap = new Etlap(id, nev, leiras, ar, kategoria);
             szurtEtlapLista.add(etlap);
 

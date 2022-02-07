@@ -4,6 +4,8 @@ import hu.petrik.etlap.etlap.Controller;
 import hu.petrik.etlap.etlap.Etlap;
 import hu.petrik.etlap.etlap.EtlapDb;
 import hu.petrik.etlap.etlap.Kategoria;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -36,9 +38,7 @@ public class MainController extends Controller {
 
     public void initialize() {
         szuro.getItems().add("Összes");
-        etlapNev.setCellValueFactory(new PropertyValueFactory<>("nev"));
-        etlapAr.setCellValueFactory(new PropertyValueFactory<>("ar"));
-        etlapKategoria.setCellValueFactory(new PropertyValueFactory<>("kategoria"));
+
 
         try {
             db = new EtlapDb();
@@ -53,6 +53,12 @@ public class MainController extends Controller {
         catch (SQLException e) {
             hibaKiiro(e);
         }
+
+        etlapNev.setCellValueFactory(new PropertyValueFactory<>("nev"));
+        etlapAr.setCellValueFactory(new PropertyValueFactory<>("ar"));
+        etlapKategoria.setCellValueFactory(new PropertyValueFactory<>("kategoria"));
+
+        kategoriaSzuro();
     }
 
     private void etlapListaFeltoltes() {
@@ -218,6 +224,30 @@ public class MainController extends Controller {
             hibaKiiro(e);
 
         }
+
+    }
+
+    public void kategoriaSzuro() {
+        szuro.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String elozo, String uj) {
+                try {
+                    if (uj.equals("Összes")) {
+                        etlapListaFeltoltes();
+                    } else {
+                        List<Etlap> szurtLista = db.etlapSzurve(uj);
+                        etlapTable.getItems().clear();
+                        for (Etlap etlap: szurtLista) {
+                            etlapTable.getItems().add(etlap);
+                        }
+                    }
+
+                } catch (SQLException e) {
+                    hibaKiiro(e);
+                }
+            }
+        });
+
 
     }
 }
