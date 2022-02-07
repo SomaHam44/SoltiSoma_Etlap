@@ -31,6 +31,10 @@
                 </font>
 
             </Button>
+            <ChoiceBox maxWidth="150.0" prefHeight="30.0" prefWidth="100.0">
+            <HBox.margin>
+               <Insets left="10.0" />
+            </HBox.margin></ChoiceBox>
         </children>
     </HBox>
    <TitledPane animated="false" maxHeight="100.0" maxWidth="500.0" prefHeight="70.0" prefWidth="500.0" text="Áremelés">
