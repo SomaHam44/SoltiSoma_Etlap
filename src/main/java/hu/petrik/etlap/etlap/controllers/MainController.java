@@ -3,6 +3,7 @@ package hu.petrik.etlap.etlap.controllers;
 import hu.petrik.etlap.etlap.Controller;
 import hu.petrik.etlap.etlap.Etlap;
 import hu.petrik.etlap.etlap.EtlapDb;
+import hu.petrik.etlap.etlap.Kategoria;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -19,6 +20,7 @@ public class MainController extends Controller {
     public TableView<Etlap> etlapTable;
     public Spinner<Integer> forintSpinner;
     public Spinner<Integer> szazalekSpinner;
+    public ChoiceBox<String> szuro;
     @FXML
     private TableColumn<Etlap, Integer> etlapAr;
     @FXML
@@ -27,11 +29,13 @@ public class MainController extends Controller {
     private TableColumn<Etlap, String> etlapNev;
     @FXML
     private TextArea etlapLeiras;
+    private List<Kategoria> kategoriak;
 
     private EtlapDb db;
 
 
     public void initialize() {
+        szuro.getItems().add("Összes");
         etlapNev.setCellValueFactory(new PropertyValueFactory<>("nev"));
         etlapAr.setCellValueFactory(new PropertyValueFactory<>("ar"));
         etlapKategoria.setCellValueFactory(new PropertyValueFactory<>("kategoria"));
@@ -39,6 +43,11 @@ public class MainController extends Controller {
         try {
             db = new EtlapDb();
             etlapListaFeltoltes();
+            kategoriak = db.getKategoria();
+            for (Kategoria kategoria: kategoriak) {
+                szuro.getItems().add(kategoria.getNev());
+            }
+            
 
         }
         catch (SQLException e) {
